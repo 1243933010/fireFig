@@ -40,13 +40,20 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <el-pagination style="text-align: right;" :current-page="page" :page-sizes="[10, 20, 50, 100]" :page-size="pageSize" :total="total"
+          layout="total, sizes, prev, pager, next, jumper" @size-change="pageSizeChangeHandle"
+          @current-change="pageCurrentChangeHandle">
+        </el-pagination>
   </div>
 </template>
 
 <script>
 import { getList } from '@/api/table'
-
+import mixinViewModule from '@/mixins/view-module.js'
 export default {
+  mixins: [mixinViewModule],
+  
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -60,7 +67,14 @@ export default {
   data() {
     return {
       list: null,
-      listLoading: true
+      listLoading: true,
+      mixinViewModuleOptions: {
+          getDataListURL: '/api/lakala/ec/applyList',
+          getDataListIsPage: true,
+          exportURL: '/api/admin/customs/goods/export',
+          deleteURL: '/api/admin/customs/goods',
+          deleteIsBatch: false
+        },
     }
   },
   created() {
