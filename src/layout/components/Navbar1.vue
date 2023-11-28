@@ -7,7 +7,8 @@
     <div class="right-menu">
       <div class="right-menu-name"><span>xxx</span></div>
       <div class="right-menu-tz"><el-badge :value="12" class="item">
-          <el-button size="small">评论</el-button>
+        <img src="../../assets/message.png" alt="">
+          <!-- <el-button size="small">评论</el-button> -->
         </el-badge></div>
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -54,11 +55,12 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
-  height: 50px;
+  height: 80px;
   padding-top: 20px;
+  padding-bottom: 20px;
   overflow: hidden;
   position: relative;
-  background: white;
+  background: #64A9EA;
   box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
   display: flex;
   justify-content: space-between;
@@ -99,6 +101,14 @@ export default {
     }
     .right-menu-tz{
       margin-left: 15px;
+      padding-top: 15px;
+      // display: flex;
+      // justify-content: center;
+      // align-items: center;
+      img{
+        width: 20px;
+        height: 27px;
+      }
     }
     .right-menu-item {
       display: inline-block;

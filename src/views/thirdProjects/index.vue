@@ -1,6 +1,6 @@
 <template>
     <div>
-        thirdProjects
+        <!-- thirdProjects -->
     </div>
 </template>
 
