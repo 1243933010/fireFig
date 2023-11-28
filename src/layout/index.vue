@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div  style="height: 100%;">
     <navbar1 />
     <div :class="classObj" class="app-wrapper">
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
