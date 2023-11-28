@@ -1,13 +1,17 @@
 <template>
   <div class="navbar">
-    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <!-- <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" /> -->
 
-    <breadcrumb class="breadcrumb-container" />
-
+    <!-- <breadcrumb class="breadcrumb-container" /> -->
+    <div class="name"><span>xxxx公司</span></div>
     <div class="right-menu">
-      <!-- <el-dropdown class="avatar-container" trigger="click">
+      <div class="right-menu-name"><span>xxx</span></div>
+      <div class="right-menu-tz"><el-badge :value="12" class="item">
+          <el-button size="small">评论</el-button>
+        </el-badge></div>
+      <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+          <img :src="avatar + '?imageView2/1/w/80/h/80'" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -15,7 +19,7 @@
             <span style="display:block;">退出</span>
           </el-dropdown-item>
         </el-dropdown-menu>
-      </el-dropdown> -->
+      </el-dropdown>
     </div>
   </div>
 </template>
@@ -51,18 +55,24 @@ export default {
 <style lang="scss" scoped>
 .navbar {
   height: 50px;
+  padding-top: 20px;
   overflow: hidden;
   position: relative;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
-
+  background: white;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .name{
+    font-size: 25px;
+  }
   .hamburger-container {
     line-height: 46px;
     height: 100%;
     float: left;
     cursor: pointer;
     transition: background .3s;
-    -webkit-tap-highlight-color:transparent;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover {
       background: rgba(0, 0, 0, .025)
@@ -77,11 +87,19 @@ export default {
     float: right;
     height: 100%;
     line-height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
     &:focus {
       outline: none;
     }
-
+    .right-menu-name{
+      margin-left: 15px;
+    }
+    .right-menu-tz{
+      margin-left: 15px;
+    }
     .right-menu-item {
       display: inline-block;
       padding: 0 8px;
@@ -89,7 +107,7 @@ export default {
       font-size: 18px;
       color: #5a5e66;
       vertical-align: text-bottom;
-
+     
       &.hover-effect {
         cursor: pointer;
         transition: background .3s;
@@ -101,7 +119,11 @@ export default {
     }
 
     .avatar-container {
+      // height: 50px;
+      // background-color: red;
       margin-right: 30px;
+      padding-top: 15px;
+      margin-left: 15px;
 
       .avatar-wrapper {
         margin-top: 5px;

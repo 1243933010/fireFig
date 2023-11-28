@@ -1,13 +1,6 @@
 <template>
   <div class="app-container">
-    <el-table
-      v-loading="listLoading"
-      :data="list"
-      element-loading-text="Loading"
-      border
-      fit
-      highlight-current-row
-    >
+    <el-table v-loading="listLoading" :data="list" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label="ID" width="95">
         <template slot-scope="scope">
           {{ scope.$index }}
@@ -41,10 +34,9 @@
       </el-table-column>
     </el-table>
 
-    <el-pagination style="text-align: right;" :current-page="page" :page-sizes="[10, 20, 50, 100]" :page-size="pageSize" :total="total"
-          layout="total, sizes, prev, pager, next, jumper" @size-change="pageSizeChangeHandle"
-          @current-change="pageCurrentChangeHandle">
-        </el-pagination>
+    <el-pagination style="text-align: right;" :current-page="page" :page-sizes="[10, 20, 50, 100]" :page-size="pageSize"
+      :total="total" layout="total, sizes, prev, pager, next, jumper" @size-change="pageSizeChangeHandle"
+      @current-change="pageCurrentChangeHandle" />
   </div>
 </template>
 
@@ -53,7 +45,7 @@ import { getList } from '@/api/table'
 import mixinViewModule from '@/mixins/view-module.js'
 export default {
   mixins: [mixinViewModule],
-  
+
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -69,12 +61,12 @@ export default {
       list: null,
       listLoading: true,
       mixinViewModuleOptions: {
-          getDataListURL: '/api/lakala/ec/applyList',
-          getDataListIsPage: true,
-          exportURL: '/api/admin/customs/goods/export',
-          deleteURL: '/api/admin/customs/goods',
-          deleteIsBatch: false
-        },
+        getDataListURL: '/api/lakala/ec/applyList',
+        getDataListIsPage: true,
+        exportURL: '/api/admin/customs/goods/export',
+        deleteURL: '/api/admin/customs/goods',
+        deleteIsBatch: false
+      },
     }
   },
   created() {
