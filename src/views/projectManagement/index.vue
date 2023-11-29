@@ -45,7 +45,7 @@
         <div class="list">
             <div class="list-box">
                 <div class="title"><span>项目列表</span></div>
-                <div class="add"><el-button type="primary">新增</el-button></div>
+                <div class="add"><el-button @click="projectAdd" type="primary">新增</el-button></div>
             </div>
             <div class="">
                 <div v-for="(item, index) in list" :key="index" class="item">
@@ -68,8 +68,8 @@
                             </div>
                         </div>
                         <div class="item-con-right">
-                            <div class="item-con-right-btn1">详情</div>
-                            <div class="item-con-right-btn2">编辑</div>
+                            <div class="item-con-right-btn1" @click="openDetail(item)">详情</div>
+                            <div class="item-con-right-btn2"  @click="openDetail">编辑</div>
                             <div class="item-con-right-btn3">删除</div>
                         </div>
                     </div>
@@ -108,6 +108,12 @@ export default {
                 message: 'cancel!',
                 type: 'warning'
             })
+        },
+        openDetail(item){
+            console.log(item)
+        },
+        projectAdd(){
+            this.$router.push({name:'projectManagementAdd',params:{}})
         }
     }
 }

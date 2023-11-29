@@ -68,6 +68,13 @@ export const constantRoutes = [
         meta: { title: '项目管理列表', icon: 'table' }
       },
       {
+        hidden: true,
+        path: 'projectManagementAdd',
+        name: 'projectManagementAdd',
+        component: () => import('@/views/projectManagement/add'),
+        meta: { title: '项目新增', icon: 'table' }
+      },
+      {
         path: 'ImplementationCommission',
         name: 'ImplementationCommission',
         component: () => import('@/views/ImplementationCommission/index'),
@@ -142,6 +149,13 @@ export const constantRoutes = [
       name: 'messageNotification',
       component: () => import('@/views/systemManagement/messageNotification/index'),
       meta: { title: '消息通知管理', icon: 'dashboard' }
+    },
+    {
+      path: 'messageNotification/edit',
+      name: 'messageNotificationEdit',
+      component: () => import('@/views/systemManagement/messageNotification/add'),
+      meta: { title: '消息通知编辑', icon: 'dashboard' },
+      hidden: true
     },
     {
       path: 'log',

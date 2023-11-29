@@ -3,12 +3,13 @@
     <!-- <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" /> -->
 
     <!-- <breadcrumb class="breadcrumb-container" /> -->
-    <div class="name"><span>xxxx公司</span></div>
+    <div class="name">
+      <!-- <span>xxxx公司</span> -->
+    </div>
     <div class="right-menu">
       <div class="right-menu-name"><span>xxx</span></div>
-      <div class="right-menu-tz"><el-badge :value="12" class="item">
-        <img src="../../assets/message.png" alt="">
-          <!-- <el-button size="small">评论</el-button> -->
+      <div class="right-menu-tz" @click="openMessage"><el-badge :value="12" class="item" >
+          <img src="../../assets/message.png" alt="">
         </el-badge></div>
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -22,6 +23,34 @@
         </el-dropdown-menu>
       </el-dropdown>
     </div>
+    <el-dialog title="代办项目提示" center :visible.sync="dialogVisible" width="50%" >
+      <el-table v-loading="listLoading" :data="list" element-loading-text="Loading" border fit highlight-current-row>
+      <el-table-column align="center" label="ID" width="95">
+        <template slot-scope="scope">
+          {{ scope.$index }}
+        </template>
+      </el-table-column>
+      <el-table-column label="Title" >
+        <template slot-scope="scope">
+          {{ scope.row.title }}
+        </template>
+      </el-table-column>
+      <el-table-column label="Author"  align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.content }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="Pageviews" align="center">
+        <template slot-scope="scope">
+          {{ scope.row.time }}
+        </template>
+      </el-table-column>
+    </el-table>
+      <!-- <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span> -->
+    </el-dialog>
   </div>
 </template>
 
@@ -29,7 +58,7 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-
+import { getList } from '@/api/table'
 export default {
   components: {
     Breadcrumb,
@@ -41,6 +70,17 @@ export default {
       'avatar'
     ])
   },
+  data(){
+    return{
+      dialogVisible:false,
+      list:[
+        {title:'标题',content:'内容',time:'199966'},
+        {title:'标题',content:'内容',time:'199966'},
+        {title:'标题',content:'内容',time:'199966'},
+      ],
+      listLoading:false
+    }
+  },
   methods: {
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
@@ -48,6 +88,10 @@ export default {
     async logout() {
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    },
+    async openMessage() {
+      console.log('1111')
+      this.dialogVisible = true;
     }
   }
 }
@@ -65,9 +109,11 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  .name{
+
+  .name {
     font-size: 25px;
   }
+
   .hamburger-container {
     line-height: 46px;
     height: 100%;
@@ -96,20 +142,24 @@ export default {
     &:focus {
       outline: none;
     }
-    .right-menu-name{
+
+    .right-menu-name {
       margin-left: 15px;
     }
-    .right-menu-tz{
+
+    .right-menu-tz {
       margin-left: 15px;
       padding-top: 15px;
+
       // display: flex;
       // justify-content: center;
       // align-items: center;
-      img{
+      img {
         width: 20px;
         height: 27px;
       }
     }
+
     .right-menu-item {
       display: inline-block;
       padding: 0 8px;
@@ -117,7 +167,7 @@ export default {
       font-size: 18px;
       color: #5a5e66;
       vertical-align: text-bottom;
-     
+
       &.hover-effect {
         cursor: pointer;
         transition: background .3s;
