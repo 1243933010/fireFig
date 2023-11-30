@@ -82,6 +82,7 @@
 
 
 <script>
+import router from '@/router/index'
 export default {
     data() {
         return {
@@ -98,6 +99,9 @@ export default {
                 { title: 'title', title1: '454545454', title2: 'dfdfdf', title3: 'dfdfdf', title4: 'dfdfdf', title5: 'fdfdf', title6: 'fdfdf' },
             ]
         }
+    },
+    mounted(){
+        console.log(router.options,this.$router)
     },
     methods: {
         onSubmit() {

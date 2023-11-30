@@ -72,13 +72,13 @@ export default {
   },
   data(){
     return{
-      dialogVisible:false,
+      dialogVisible:true,
       list:[
         {title:'标题',content:'内容',time:'199966'},
         {title:'标题',content:'内容',time:'199966'},
         {title:'标题',content:'内容',time:'199966'},
       ],
-      listLoading:false
+      listLoading:true
     }
   },
   methods: {
